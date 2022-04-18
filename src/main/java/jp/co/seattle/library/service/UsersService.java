@@ -44,7 +44,9 @@ public class UsersService {
      */
     public UserInfo selectUserInfo(String email, String password) {
         // TODO SQL生成
-        String sql = "SELECT email, password FROM users WHERE email =  '" + email  + " ' AND  password = ' "  + password + " ' ";         
+
+        String sql = "SELECT email, password FROM users WHERE email =  '"+ email  +"'AND  password= '"+ password +"'";         
+        System.out.println(sql);
         
         try {
         	UserInfo selectedUserInfo = jdbcTemplate.queryForObject(sql, new UserCountRowMapper());
@@ -52,6 +54,7 @@ public class UsersService {
         } catch(Exception e) {
         	return null;
         }
+
     }
 
 }

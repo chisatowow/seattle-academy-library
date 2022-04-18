@@ -45,12 +45,10 @@ public class LoginController {
             Model model) {
 
         // TODO 下記のコメントアウトを外してサービスクラスを使用してください。
-        UserInfo selectedUserInfo = usersService.selectUserInfo(email, password);
 
+        UserInfo selectedUserInfo = usersService.selectUserInfo(email, password);
         // TODO パスワードとメールアドレスの組み合わせ存在チェック実装
-        
-        
-        	
+
         	if(selectedUserInfo == null) {
             	model.addAttribute("accountCheck","アカウントが存在しません"); 
             	return "login";     	
@@ -58,6 +56,7 @@ public class LoginController {
             	return "home";
             }
                
+
         // 本の情報を取得して画面側に渡す
        // model.addAttribute("bookList", booksService.getBookList());
        // return "home";

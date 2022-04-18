@@ -24,7 +24,7 @@ public class UsersService {
      * ユーザー情報を登録する
      * @param userInfo ユーザー情報
      */
-    public void registUser(UserInfo userInfo) {
+    public void registUser(UserInfo userInfo) {	
 
         // SQL生成
         String sql = "INSERT INTO users (email, password,reg_date,upd_date) VALUES ('"
@@ -44,13 +44,16 @@ public class UsersService {
      */
     public UserInfo selectUserInfo(String email, String password) {
         // TODO SQL生成
-        String sql = "";
-                
-                
-                
 
-        UserInfo selectedUserInfo = jdbcTemplate.queryForObject(sql, new UserCountRowMapper());
-        return selectedUserInfo;
+        String sql = "SELECT email, password FROM users WHERE email =  '"+ email  +"'AND  password= '"+ password +"'";         
+        System.out.println(sql);
+        
+        try {
+        	UserInfo selectedUserInfo = jdbcTemplate.queryForObject(sql, new UserCountRowMapper());
+            return selectedUserInfo;
+        } catch(Exception e) {
+        	return null;
+        }
 
     }
 

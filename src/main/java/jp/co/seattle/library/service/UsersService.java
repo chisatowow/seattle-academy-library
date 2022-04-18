@@ -24,7 +24,7 @@ public class UsersService {
      * ユーザー情報を登録する
      * @param userInfo ユーザー情報
      */
-    public void registUser(UserInfo userInfo) {
+    public void registUser(UserInfo userInfo) {	
 
         // SQL生成
         String sql = "INSERT INTO users (email, password,reg_date,upd_date) VALUES ('"

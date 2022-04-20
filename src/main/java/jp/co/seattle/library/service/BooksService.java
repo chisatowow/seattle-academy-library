@@ -32,7 +32,7 @@ public class BooksService {
     public List<BookInfo> getBookList() {
 
         // TODO 取得したい情報を取得するようにSQLを修正
-        String sql = "SELECT * FROM books ORDER BY title ASC";
+        String sql = "SELECT id, title, author, publisher, publish_date, thumbnail_url FROM books ORDER BY title ASC";
         System.out.println(sql);
     	List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
 
@@ -71,5 +71,6 @@ public class BooksService {
                 + "now())";
 
         jdbcTemplate.update(sql);
+        
     }
 }

@@ -42,8 +42,11 @@ public class AddBooksController {
      * @param title 書籍名
      * @param author 著者名
      * @param publisher 出版社
+     * @param publish_date 出版日
      * @param file サムネイルファイル
-     * @param model モデル
+     * @param model モデル     
+     * @param isbn コード
+     * @param bio 説明文
      * @return 遷移先画面
      */
     @Transactional
@@ -52,7 +55,10 @@ public class AddBooksController {
             @RequestParam("title") String title,
             @RequestParam("author") String author,
             @RequestParam("publisher") String publisher,
-            @RequestParam("thumbnail") MultipartFile file,
+            @RequestParam("publish_date")String publish_date,
+            @RequestParam("thumbnail") MultipartFile file,            
+            @RequestParam("isbn")String isbn,
+            @RequestParam("bio")String bio,
             Model model) {
         logger.info("Welcome insertBooks.java! The client locale is {}.", locale);
 
@@ -61,6 +67,9 @@ public class AddBooksController {
         bookInfo.setTitle(title);
         bookInfo.setAuthor(author);
         bookInfo.setPublisher(publisher);
+        bookInfo.setPublishDate(publish_date);
+        bookInfo.setIsbn(isbn);
+        bookInfo.setBio(bio);
 
         // クライアントのファイルシステムにある元のファイル名を設定する
         String thumbnail = file.getOriginalFilename();
@@ -83,15 +92,41 @@ public class AddBooksController {
                 return "addBook";
             }
         }
-
+        
+        boolean detailIsNull = title.isEmpty() || author.isEmpty()|| publisher.isEmpty() || publish_date.isEmpty();
+        boolean isbnCheck10 = isbn.matches("^[0-9]{10}$");
+        boolean isbnCheck13 = isbn.matches("^[0-9]{13}$");
+        boolean pdCheck = publish_date.matches("^[0-9]*{8}$");        
+                        
+        if(detailIsNull) {
+        	model.addAttribute("detailIsNull","必須項目を入力してください");        	
+        }
+        
+        if(!(isbnCheck10 || isbnCheck13)){
+        	model.addAttribute("isbn","ISBNの桁数または半角数字が正しくありません");        	
+        }                
+        
+        if (!(pdCheck)) {
+        	model.addAttribute("pd","出版日は半角数字のYYYYMMDD形式で入力してください");            	
+        } 
+        
+        if ((!(isbnCheck10 || isbnCheck13)) || !(pdCheck) || detailIsNull) {
+        	model.addAttribute("bookInfo",bookInfo);
+        	return "addBook";
+        }
+                
         // 書籍情報を新規登録する
         booksService.registBook(bookInfo);
 
         model.addAttribute("resultMessage", "登録完了");
 
-        // TODO 登録した書籍の詳細情報を表示するように実装
+        // TODO 登録した書籍の詳細情報を表示するように実装        
+        
+        model.addAttribute("bookDetailsInfo",booksService.getBookInfo(booksService.MaxId()));
+        
         //  詳細画面に遷移する
         return "details";
+        
     }
 
 }

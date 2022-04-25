@@ -96,7 +96,7 @@ public class AddBooksController {
         boolean detailIsNull = title.isEmpty() || author.isEmpty()|| publisher.isEmpty() || publish_date.isEmpty();
         boolean isbnCheck10 = isbn.matches("^[0-9]{10}$");
         boolean isbnCheck13 = isbn.matches("^[0-9]{13}$");
-        boolean pdCheck = publish_date.matches("^[0-9]*{8}$");        
+        boolean pdCheck = publish_date.matches("^[0-9]{8}$");        
                         
         if(detailIsNull) {
         	model.addAttribute("detailIsNull","必須項目を入力してください");        	

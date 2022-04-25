@@ -88,7 +88,7 @@ public class AddBooksController {
 
                 // 異常終了時の処理
                 logger.error("サムネイルアップロードでエラー発生", e);
-                model.addAttribute("bookDetailsInfo", bookInfo);
+                model.addAttribute("bookInfo", bookInfo);
                 return "addBook";
             }
         }

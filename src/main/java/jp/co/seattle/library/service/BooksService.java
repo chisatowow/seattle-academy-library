@@ -32,7 +32,7 @@ public class BooksService {
     public List<BookInfo> getBookList() {
 
         // TODO 取得したい情報を取得するようにSQLを修正
-        String sql = "SELECT id, title, author, publisher, publish_date, thumbnail_url FROM books ORDER BY title ASC";       
+        String sql = "SELECT id, title, author, publisher, publish_date, thumbnail_url, bio, isbn FROM books ORDER BY title ASC";       
     	List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
 
         return getedBookList;
@@ -62,12 +62,14 @@ public class BooksService {
      */
     public void registBook(BookDetailsInfo bookInfo) {
 
-        String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
-                + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
+        String sql = "INSERT INTO books (title, author, publisher, publish_date, thumbnail_name, thumbnail_url, reg_date, upd_date, bio, isbn) VALUES ('"
+                + bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"+ bookInfo.getPublishDate() + "','"
                 + bookInfo.getThumbnailName() + "','"
                 + bookInfo.getThumbnailUrl() + "',"
                 + "now(),"
-                + "now())";
+                + "now(),'"
+        		+ bookInfo.getBio()+"','"
+        		+ bookInfo.getIsbn()+"')";
 
         jdbcTemplate.update(sql);
         
@@ -79,6 +81,19 @@ public class BooksService {
     	
 		jdbcTemplate.update(sql);
     	
+    }
+    
+     /**
+     *書籍IDに紐づく最新登録書籍情報を取得する
+     *
+     *@param bookId 書籍ID
+     *@return 最新書籍情報
+     */
+    
+    public int maxId(){    	
+    	String sql ="SELECT Max(id) FROM books";
+    	int MaxId = jdbcTemplate.queryForObject(sql,int.class);
+    	return MaxId;
     }
     
 }

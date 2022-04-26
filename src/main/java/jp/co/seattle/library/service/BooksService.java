@@ -83,7 +83,14 @@ public class BooksService {
     	
     }
     
-    public int MaxId(){    	
+     /**
+     *書籍IDに紐づく最新登録書籍情報を取得する
+     *
+     *@param bookId 書籍ID
+     *@return 最新書籍情報
+     */
+    
+    public int maxId(){    	
     	String sql ="SELECT Max(id) FROM books";
     	int MaxId = jdbcTemplate.queryForObject(sql,int.class);
     	return MaxId;

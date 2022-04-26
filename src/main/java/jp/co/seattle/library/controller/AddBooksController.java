@@ -106,11 +106,11 @@ public class AddBooksController {
         	model.addAttribute("isbn","ISBNの桁数または半角数字が正しくありません");        	
         }                
         
-        if (!(pdCheck)) {
+        if (!pdCheck) {
         	model.addAttribute("pd","出版日は半角数字のYYYYMMDD形式で入力してください");            	
         } 
         
-        if ((!(isbnCheck10 || isbnCheck13)) || !(pdCheck) || detailIsNull) {
+        if (!(isbnCheck10 || isbnCheck13) || !pdCheck || detailIsNull) {
         	model.addAttribute("bookInfo",bookInfo);
         	return "addBook";
         }
@@ -122,7 +122,7 @@ public class AddBooksController {
 
         // TODO 登録した書籍の詳細情報を表示するように実装        
         
-        model.addAttribute("bookDetailsInfo",booksService.getBookInfo(booksService.MaxId()));
+        model.addAttribute("bookDetailsInfo",booksService.getBookInfo(booksService.maxId()));
         
         //  詳細画面に遷移する
         return "details";

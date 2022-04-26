@@ -54,7 +54,7 @@
                             <input type="text" name="title" value="${bookInfo.title}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="title" value="${bookInfo.title}" autocomplete="off">
+                            <input type="text" name="title" autocomplete="off">
                         </c:if>                                              
                     </div>
                     <div>
@@ -63,7 +63,7 @@
                             <input type="text" name="author" value="${bookInfo.author}">
                         </c:if>   
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="author" value="${bookInfo.author}" autocomplete="off">
+                            <input type="text" name="author" autocomplete="off">
                         </c:if>                     
                     </div>
                     <div>
@@ -72,7 +72,7 @@
                             <input type="text" name="publisher" value="${bookInfo.publisher}">
                         </c:if>   
                         <c:if test="${empty bookInfo}">
-                            <input type="text" name="publisher" value="${bookInfo.publisher}" autocomplete="off">
+                            <input type="text" name="publisher" autocomplete="off">
                         </c:if>                     
                     </div>
                     <div>
@@ -81,7 +81,7 @@
                             <input type="text" name="publish_date" value="${bookInfo.publishDate}">
                         </c:if>
                         <c:if test="${empty bookInfo}">
-                            <input type="text"  name="publish_date" value="${bookInfo.publishDate}" autocomplete="off">
+                            <input type="text"  name="publish_date" autocomplete="off">
                         </c:if>                        
                     </div>
                     <div>

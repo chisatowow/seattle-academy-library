@@ -96,4 +96,27 @@ public class BooksService {
     	return MaxId;
     }
     
+    /**
+     * 書籍の詳細情報を更新する
+     * 
+     * @param bookId 書籍ID
+     */
+    
+    public void editBook(BookDetailsInfo bookInfo) {
+
+        String sql = "UPDATE books SET title='"+bookInfo.getTitle()
+        		+"',author='"+bookInfo.getAuthor()
+        		+"',publisher='"+bookInfo.getPublisher()
+        		+"',publish_date='"+bookInfo.getPublishDate()
+        		+"',thumbnail_name='"+bookInfo.getThumbnailName()
+        		+"',thumbnail_url='"+bookInfo.getThumbnailUrl()
+        		+"',upd_date=now(), bio='"+bookInfo.getBio()
+        		+"',isbn='"+bookInfo.getIsbn()
+        		+"'WHERE id=" +bookInfo.getBookId();    
+
+        jdbcTemplate.update(sql);
+    }
+
+    
+    
 }

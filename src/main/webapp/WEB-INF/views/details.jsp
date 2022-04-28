@@ -75,13 +75,13 @@
         </div>        
             <div class="edtDelBookBtn_box">                
                     <form method="post" action="rentBook">
-                        <button type="submit" value="" name="" class="btn_rentBook">借りる</button>
+                        <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
                     </form>
                     <form method="post" action="returnBook">
-                        <button type="submit" value="" name="" class="btn_returnBook">返す</button>
+                        <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
                     </form>
-                    <form method="post" action="deleteBook">
-                        <button type="submit" value="" name="" class="btn_editBook">編集</button>
+                    <form method="post" action="edit">
+                        <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
                     </form>                    
                     <form method="post" action="deleteBook">
                         <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>

@@ -29,9 +29,33 @@
         </div>
     </header>
     <main>
-        <form action="<%=request.getContextPath()%>/insertBook" method="post" enctype="multipart/form-data" id="data_upload_form">
+        <form action="<%=request.getContextPath()%>/registed" method="post" enctype="multipart/form-data" id="data_upload_form">
             <h1>一括登録</h1>
-            
+            <div class="bulk_form">
+                <h2>CSVファイルをアップロードすることで書籍を一括で登録できます。</h2>
+                <div class="caution">
+                    <p>「書籍名,著者名,出版社,出版日,ISBN」の形式で記載してください。</p>
+                    <p>※サムネイル画像は一括登録できません。編集画面で１冊編集してください。</p> 
+                </div>                                                 
+            </div>            
+            <div class="bulk_form"> 
+                <input type="file" accept=".csv" name="File" id="File">        
+                <div class="btn_bulkRegist">
+                    <button type="submit" class="btn_bulkRegist">一括登録</button>
+                </div> 
+                <div class="error_msg">
+                    <c:if test="${!empty booksEmpty}" >                        
+                        <p class="error">${booksEmpty}</p>                       
+                    </c:if>
+                    <c:if test="${!empty booksError}">
+                    <div class="error">
+                    <c:forEach var="bookError" items="${booksError}">
+                        <p>${bookError}</p>
+                    </c:forEach>
+                    </div>                        
+                    </c:if>
+                </div>
+            </div>
         </form>
     </main>
 </body>

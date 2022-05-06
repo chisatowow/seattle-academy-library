@@ -69,7 +69,12 @@
                 </div>
                 <div>
                     <span>説明文</span>
-                    <p>${bookDetailsInfo.bio}</p>
+                    <c:if test="${bookDetailsInfo.bio == 'null'}">
+                        <p></p>
+                    </c:if>
+                    <c:if test="${bookDetailsInfo.bio != 'null'}">
+                        <p>${bookDetailsInfo.bio}</p>
+                    </c:if>                    
                 </div>   
             </div>
         </div>        

@@ -27,7 +27,11 @@ public class BulkBookController {
 
 	@Autowired
 	private BooksService booksService;
-
+	/**
+	 * @param locale
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/bulkRegist", method = RequestMethod.GET, produces = "text/plain;charset=utf-8") //value＝actionで指定したパラメータ
 	//RequestParamでname属性を取得
 	public String bulkBook(Locale locale ,Model model) {
@@ -35,6 +39,12 @@ public class BulkBookController {
 		return "bulkBook";
 	}
 	
+	/**	 * 
+	 * @param local
+	 * @param model
+	 * @param uploadFile
+	 * @return
+	 */
 	@RequestMapping(value = "/registed", method = RequestMethod.POST , produces = "text/plain;charset=utf-8") //value＝actionで指定したパラメータ
 	//RequestParamでname属性を取得
 	public String registedBooks(Locale local,Model model,@RequestParam("File")MultipartFile uploadFile) {
@@ -45,7 +55,7 @@ public class BulkBookController {
 		      String line;
 		      int i = 1;
 		      while ((line = br.readLine()) != null) {
-		        final String[] split = line.split(",",-1);
+		        String[] split = line.split(",",-1);
 		        boolean detailIsNull = split[0].isEmpty() || split[1].isEmpty()|| split[2].isEmpty() || split[3].isEmpty();
 		        boolean isbnCheck10 = split[4].matches("^[0-9]{10}$");
 		        boolean isbnCheck13 = split[4].matches("^[0-9]{13}$");
@@ -71,22 +81,19 @@ public class BulkBookController {
 		
 		if(notError == null || notError.size() == 0) {
 			model.addAttribute("booksEmpty","csvに書籍情報がありません。");
-		}
-		
-		for(int n = 0;n<errorMessage.size();n++) {
-			if(!(errorMessage == null || errorMessage.size() == 0)) {
-				model.addAttribute("booksError",errorMessage);
-			}
-		}
-		
-		if(notError == null || notError.size() == 0 || !(errorMessage == null || errorMessage.size() == 0)){
 			return "bulkBook";
+		}
+		if(!(errorMessage == null || errorMessage.size() == 0)) {
+			for(int n = 0;n<errorMessage.size();n++) {
+				model.addAttribute("booksError",errorMessage);
+				return "bulkBook";
+			}
 		}
 		
 		for(int q=0;q<notError.size();q++) {
 			booksService.registBook(notError.get(q));
 		}
-		model.addAttribute("bookList", booksService.getBookList());
+		
 		return "redirect:home";
 		
 	}

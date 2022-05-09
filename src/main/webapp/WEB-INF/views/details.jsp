@@ -45,6 +45,11 @@
                         <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
+                <div class="rent_status">
+                <c:if test="${!empty rentedMessage}">
+                    <p class="error">${rentedMessage}</p>
+                </c:if>
+                </div>
             </div>
             <div class="content_right">
                 <div>

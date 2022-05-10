@@ -49,6 +49,9 @@
                 <c:if test="${!empty rentedMessage}">
                     <p class="error">${rentedMessage}</p>
                 </c:if>
+                <c:if test="${!empty notRentMessage}">
+                    <p class="error">${notRentMessage}</p>
+                </c:if>
                 </div>
             </div>
             <div class="content_right">

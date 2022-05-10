@@ -49,7 +49,7 @@ public class RentBookController {
 			rentService.rentBook(bookId);
 			model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
 			return "details";
-		}else if(rentService.countValues(bookId) == 1){
+		}else {
 			model.addAttribute("rentedMessage","貸出し済みです。");
 		}
 

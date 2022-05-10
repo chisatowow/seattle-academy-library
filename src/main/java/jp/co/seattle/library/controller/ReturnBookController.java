@@ -38,13 +38,8 @@ public class ReturnBookController {
 		
 		if(rentService.countValues(bookId) == 1) {
 			rentService.returnBook(bookId);
-			model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
-			return "details";
-		}
-		
-		if(rentService.countValues(bookId) == 0) {
+		}else {
 			model.addAttribute("notRentMessage","貸出しされていません。");
-			model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
 		}
 		
 		model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));

@@ -35,22 +35,18 @@
             <div class="content_left">
                 <span>書籍の画像</span>
                 <div class="book_thumnail">
-                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> 
-                        <c:if test="${bookDetailsInfo.thumbnailUrl == 'null'}">
+                    <a href="${bookDetailsInfo.thumbnailUrl}" data-lightbox="image-1"> <c:if test="${bookDetailsInfo.thumbnailUrl == 'null'}">
                             <img class="book_noimg" src="resources/img/noImg.png">
-                        </c:if> 
-                        <c:if test="${bookDetailsInfo.thumbnailUrl != 'null'}">
+                        </c:if> <c:if test="${bookDetailsInfo.thumbnailUrl != 'null'}">
                             <img class="book_noimg" src="${bookDetailsInfo.thumbnailUrl}">
-                        </c:if> 
-                        <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
+                        </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}"> <input type="hidden" name="rentBookId" value="${bookDetailsInfo.rentBookId}">
                     </a>
                 </div>
-                <div class="rent_status">
-                <c:if test="${!empty okRent}">
-                    <p>${okRent}</p>
+                <c:if test="${bookDetailsInfo.rentBookId == 0}">
+                    <p>貸し出し可</p>
                 </c:if>
-                <c:if test="${!empty ngRent}">
-                    <p>${ngRent}</p>
+                <c:if test="${bookDetailsInfo.rentBookId != 0}">
+                    <p>貸し出し中</p>
                 </c:if>
                 <c:if test="${!empty notRentMessage}">
                     <p class="error">${notRentMessage}</p>
@@ -58,7 +54,6 @@
                 <c:if test="${!empty rentedMessage}">
                     <p class="error">${rentedMessage}</p>
                 </c:if>
-                </div>
             </div>
             <div class="content_right">
                 <div>
@@ -72,7 +67,7 @@
                 <div>
                     <span>出版社</span>
                     <p>${bookDetailsInfo.publisher}</p>
-                </div>         
+                </div>
                 <div>
                     <span>出版日</span>
                     <p>${bookDetailsInfo.publishDate}</p>
@@ -93,24 +88,24 @@
                     </c:if>
                     <c:if test="${bookDetailsInfo.bio != 'null'}">
                         <p>${bookDetailsInfo.bio}</p>
-                    </c:if>                    
-                </div>   
+                    </c:if>
+                </div>
             </div>
-        </div>        
-            <div class="edtDelBookBtn_box">                
-                    <form method="post" action="rentBook">
-                        <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
-                    </form>
-                    <form method="post" action="returnBook">
-                        <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
-                    </form>
-                    <form method="post" action="edit">
-                        <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
-                    </form>                    
-                    <form method="post" action="deleteBook">
-                        <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
-                    </form>                     
-            </div>         
+        </div>
+        <div class="edtDelBookBtn_box">
+            <form method="post" action="rentBook">
+                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
+            </form>
+            <form method="post" action="returnBook">
+                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook">返す</button>
+            </form>
+            <form method="post" action="edit">
+                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
+            </form>
+            <form method="post" action="deleteBook">
+                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_deleteBook">削除</button>
+            </form>
+        </div>
     </main>
 </body>
 </html>

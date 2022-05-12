@@ -44,19 +44,14 @@ public class RentBookController {
 			Model model) {
 		//デバッグ用ログ
 		logger.info("Welcome detailsControler.java! The client locale is {}.", locale);
-		
+
 		if(rentService.countValues(bookId) == 0) {
-		rentService.rentBook(bookId);
-		model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
-		return "details";
-		}
-		
-		if(rentService.countValues(bookId) == 1) {
+			rentService.rentBook(bookId);
+		}else {
 			model.addAttribute("rentedMessage","貸出し済みです。");
-			model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
-			return "details";
 		}
-		
+
+		model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
 		return "details";
 	}
 

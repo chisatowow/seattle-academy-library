@@ -28,6 +28,11 @@ public class RentService {
 		jdbcTemplate.update(sql);
 	}
 	
+	/**
+	 * 書籍IDに紐づく書籍が借りられていることを取得する
+	 * @param bookId　書籍ID
+	 * @return 書籍ID
+	 */
 	public int countValues(int bookId){
 		String sql = "SELECT COUNT(book_id) FROM rent WHERE book_id ="+bookId+"";
 		int countValues = jdbcTemplate.queryForObject(sql,int.class);

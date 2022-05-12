@@ -57,6 +57,17 @@ public class AccountController {
         userInfo.setEmail(email);
 
         // TODO バリデーションチェック、パスワード一致チェック実装
+        boolean checkPassword = password.matches("[a-zA-Z0-9\\$!]{8,16}");
+        
+        if(!checkPassword) {
+        	model.addAttribute("checkPassword", "パスワードは8文字以上かつ半角英数字に設定してください。");
+        	return "createAccount";
+        }
+        
+        if(!(password.equals(passwordForCheck))) {
+        	model.addAttribute("equalsPassword", "パスワードが一致しません");
+        	return "createAccount";
+        }
 
         userInfo.setPassword(password);
         usersService.registUser(userInfo);

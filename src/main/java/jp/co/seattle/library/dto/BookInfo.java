@@ -25,7 +25,7 @@ public class BookInfo {
 
     private String bio;
     
-    private String isbn;        
+    private String isbn;
     
     public BookInfo() {
 
@@ -40,7 +40,7 @@ public class BookInfo {
         this.publishDate = publishDate;
         this.thumbnail = thumbnail;
         this.bio = bio;
-        this.isbn = isbm;       
+        this.isbn = isbm;
     }
 
 }

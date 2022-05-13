@@ -121,4 +121,34 @@ public class BooksService {
         jdbcTemplate.update(sql);
     }
     
+    /**
+     * 書籍名と部分一致する書籍リストを取得する
+     * 
+     * @param bookTitle 書籍名
+     * @return 書籍情報
+     */
+    
+    public List<BookInfo> serchBookList(){
+    	
+    	String sql = "select * from books where title like ''"+serchCharacter+"'%'";
+    	List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
+    			
+    	return serchBookList();
+    }
+    
+    /**
+     * 書籍名と完全一致する書籍リストを取得する
+     * 
+     * @param bookTitle 書籍名
+     * @return 書籍情報
+     */
+    
+    public List<BookInfo> serchMatchBookList(){
+    	
+    	String sql = "select * from books where title ='"+serchCharacter+"'";
+    	List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
+
+    	return serchMatchBookList();
+    }
+    
 }

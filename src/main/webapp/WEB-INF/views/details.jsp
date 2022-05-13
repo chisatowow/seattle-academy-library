@@ -48,6 +48,12 @@
                 <c:if test="${bookDetailsInfo.rentBookId != 0}">
                     <p>貸し出し中</p>
                 </c:if>
+                <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}"> </a>
+            </div>
+            <div class="rent_status">
+                <c:if test="${!empty rentedMessage}">
+                    <p class="error">${rentedMessage}</p>
+                </c:if>
                 <c:if test="${!empty notRentMessage}">
                     <p class="error">${notRentMessage}</p>
                 </c:if>
@@ -55,42 +61,43 @@
                     <p class="error">${rentedMessage}</p>
                 </c:if>
             </div>
-            <div class="content_right">
-                <div>
-                    <span>書籍名</span>
-                    <p>${bookDetailsInfo.title}</p>
-                </div>
-                <div>
-                    <span>著者名</span>
-                    <p>${bookDetailsInfo.author}</p>
-                </div>
-                <div>
-                    <span>出版社</span>
-                    <p>${bookDetailsInfo.publisher}</p>
-                </div>
-                <div>
-                    <span>出版日</span>
-                    <p>${bookDetailsInfo.publishDate}</p>
-                </div>
-                <div>
-                    <span>ISBN</span>
-                    <c:if test="${bookDetailsInfo.isbn == 'null'}">
-                        <p></p>
-                    </c:if>
-                    <c:if test="${bookDetailsInfo.bio != 'null'}">
-                        <p>${bookDetailsInfo.bio}</p>
-                    </c:if>
-                </div>
-                <div>
-                    <span>説明文</span>
-                    <c:if test="${bookDetailsInfo.bio == 'null'}">
-                        <p></p>
-                    </c:if>
-                    <c:if test="${bookDetailsInfo.bio != 'null'}">
-                        <p>${bookDetailsInfo.bio}</p>
-                    </c:if>
-                </div>
+        </div>
+        <div class="content_right">
+            <div>
+                <span>書籍名</span>
+                <p>${bookDetailsInfo.title}</p>
             </div>
+            <div>
+                <span>著者名</span>
+                <p>${bookDetailsInfo.author}</p>
+            </div>
+            <div>
+                <span>出版社</span>
+                <p>${bookDetailsInfo.publisher}</p>
+            </div>
+            <div>
+                <span>出版日</span>
+                <p>${bookDetailsInfo.publishDate}</p>
+            </div>
+            <div>
+                <span>ISBN</span>
+                <c:if test="${bookDetailsInfo.isbn == 'null'}">
+                    <p></p>
+                </c:if>
+                <c:if test="${bookDetailsInfo.bio != 'null'}">
+                    <p>${bookDetailsInfo.bio}</p>
+                </c:if>
+            </div>
+            <div>
+                <span>説明文</span>
+                <c:if test="${bookDetailsInfo.bio == 'null'}">
+                    <p></p>
+                </c:if>
+                <c:if test="${bookDetailsInfo.bio != 'null'}">
+                    <p>${bookDetailsInfo.bio}</p>
+                </c:if>
+            </div>
+        </div>
         </div>
         <div class="edtDelBookBtn_box">
             <form method="post" action="rentBook">

@@ -38,4 +38,15 @@ public class RentService {
 		int countValues = jdbcTemplate.queryForObject(sql,int.class);
 		return countValues;
 	}
+	
+	/**
+	 * 貸し出し書籍の情報を削除する
+	 * 
+	 * @param bookId 書籍ID
+	 */
+	public void returnBook(int bookId) {
+		String sql = "DELETE FROM rent WHERE book_id ="+bookId+"";
+		
+		jdbcTemplate.update(sql);
+	}
 }

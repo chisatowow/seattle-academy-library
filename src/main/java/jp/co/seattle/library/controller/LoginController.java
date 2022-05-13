@@ -48,7 +48,10 @@ public class LoginController {
         UserInfo selectedUserInfo = usersService.selectUserInfo(email, password);
 
         // TODO パスワードとメールアドレスの組み合わせ存在チェック実装
-        
+        if(selectedUserInfo == null) {
+        	model.addAttribute("errorMessage","アカウントが存在しません。");
+        	return "login";
+        }
         // 本の情報を取得して画面側に渡す
         model.addAttribute("bookList", booksService.getBookList());
         return "home";

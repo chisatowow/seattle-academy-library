@@ -28,6 +28,13 @@ public class ReturnBookController {
 	@Autowired
 	private BooksService bookdService;
 	
+	/**
+	 * 
+	 * @param locale ロケール情報
+	 * @param bookId 書籍ID
+	 * @param model モデル情報
+	 * @return 書籍詳細画面
+	 */
 	@Transactional
 	@RequestMapping(value = "/returnBook", method = RequestMethod.POST) //value＝actionで指定したパラメータ
 	//RequestParamでname属性を取得
@@ -36,15 +43,10 @@ public class ReturnBookController {
 			Model model) {
 		logger.info("Welcome detailsControler.java! The client locale is {}.", locale);
 		
-		if(rentService.countValues(bookId) == 1) {
+		if(rentService.countValues(bookId) > 0) {
 			rentService.returnBook(bookId);
-			model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
-			return "details";
-		}
-		
-		if(rentService.countValues(bookId) == 0) {
+		}else {
 			model.addAttribute("notRentMessage","貸出しされていません。");
-			model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
 		}
 		
 		model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));

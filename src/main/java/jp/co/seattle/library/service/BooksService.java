@@ -128,12 +128,12 @@ public class BooksService {
      * @return 書籍情報
      */
     
-    public List<BookInfo> serchBookList(){
+    public List<BookInfo> serchBookList(String serchTitle){
     	
-    	String sql = "select * from books where title like ''"+serchCharacter+"'%'";
-    	List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
+    	String sql = "select * from books where title like '%"+serchTitle+"%'ORDER BY title ASC";
+    	List<BookInfo> serchBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
     			
-    	return serchBookList();
+    	return serchBookList;
     }
     
     /**
@@ -143,12 +143,12 @@ public class BooksService {
      * @return 書籍情報
      */
     
-    public List<BookInfo> serchMatchBookList(){
+    public List<BookInfo> serchMatchBookList(String serchTitle){
     	
-    	String sql = "select * from books where title ='"+serchCharacter+"'";
+    	String sql = "select * from books where title ='"+serchTitle+"'ORDER BY title ASC";
     	List<BookInfo> getedBookList = jdbcTemplate.query(sql, new BookInfoRowMapper());
 
-    	return serchMatchBookList();
+    	return getedBookList;
     }
     
 }

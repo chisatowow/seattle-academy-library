@@ -28,11 +28,21 @@ public class SerchBooksController {
     //RequestParamでname属性を取得
     public String login(Model model,
     		Locale locale,
-    		@RequestParam("title") String title) {
+    		@RequestParam("serchTitle") String serchTitle,
+    		@RequestParam("radiobutton") int radiobutton) {
     	// デバッグ用ログ
     	logger.info("Welcome SerchBooksController.java! The client locale is {}.", locale);
     	
-    	model.addAttribute("serchBookInfo",booksService.serchBookList(title));
+    	if(booksService.serchBookList(serchTitle).isEmpty() || booksService.serchMatchBookList(serchTitle).isEmpty()) {
+    		model.addAttribute("resultMessage","一致する書籍がありません。");
+    		return "home";
+    	}
+    	
+    	if(radiobutton == 0) {
+    		model.addAttribute("bookList",booksService.serchBookList(serchTitle));    		
+    	}else {
+    		model.addAttribute("bookList",booksService.serchMatchBookList(serchTitle)); 
+    	}
     	
         return "home";
     }

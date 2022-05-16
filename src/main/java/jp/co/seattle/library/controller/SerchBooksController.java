@@ -33,7 +33,7 @@ public class SerchBooksController {
     	// デバッグ用ログ
     	logger.info("Welcome SerchBooksController.java! The client locale is {}.", locale);
     	
-    	if(booksService.serchBookList(serchTitle).isEmpty() || booksService.serchMatchBookList(serchTitle).isEmpty()) {
+    	if(booksService.serchBookList(serchTitle).isEmpty() && booksService.serchMatchBookList(serchTitle).isEmpty()) {
     		model.addAttribute("resultMessage","一致する書籍がありません。");
     		return "home";
     	}

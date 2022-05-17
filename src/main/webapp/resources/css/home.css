@@ -71,7 +71,6 @@ input {
 }
 
 .search1 {
-    border-radius: 20px 0 0 20px;
     font-size: 15px;
     width: 325px;
     padding: 4px 10px;
@@ -140,7 +139,7 @@ img.book_noimg, img.book_img{
     font-size: 12px;
 }
 
-a.btn_add_book,a.btn_bulk_book, button.btn_addBook,button.btn_editBook, button.btn_deleteBook,button.btn_rentBook,button.btn_returnBook,button.btn_bulkRegist {
+a.btn_add_book,a.btn_bulk_book, button.btn_addBook,button.btn_editBook, button.btn_deleteBook,button.btn_rentBook,button.btn_returnBook,button.btn_bulkRegist,button.search_box {
     display: inline-block;
     font-size: 16px;
     font-weight: bold;

@@ -26,33 +26,38 @@
     </header>
     <main>
         <h1>Home</h1>
-        <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a>
-        <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括登録</a>
+        <div class="content_top">
+            <div class"="content_addbutton">
+                <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括登録</a>
+            </div>
+            <form action="serchBook" method="post">
+                <input type="search" class="search1" value="${serchTitle}" name="serchTitle" />
+                <button type="submit" class="search_box">検索</button>
+                <input type="radio" name="radiobutton" value="0" checked>部分一致
+                <input type="radio" name="radiobutton" value="1">完全一致
+            </form>
+        </div>
         <div class="content_body">
             <c:if test="${!empty resultMessage}">
-                <div class="error_msg">${resultMessage}</div>
+                <div class="error">${resultMessage}</div>
             </c:if>
             <div>
                 <div class="booklist">
                     <c:forEach var="bookInfo" items="${bookList}">
                         <div class="books">
                             <form method="post" class="book_thumnail" action="<%=request.getContextPath()%>/details">
-                                <a href="javascript:void(0)" onclick="this.parentNode.submit();">
-                                 	<c:if test="${bookInfo.thumbnail == 'null'}">
+                                <a href="javascript:void(0)" onclick="this.parentNode.submit();"> <c:if test="${bookInfo.thumbnail == 'null'}">
                                         <img class="book_noimg" src="resources/img/noImg.png">
-                                    </c:if>
-                                    <c:if test="${bookInfo.thumbnail != 'null'}">
+                                    </c:if> <c:if test="${bookInfo.thumbnail != 'null'}">
                                         <img class="book_noimg" src="${bookInfo.thumbnail}">
                                     </c:if>
-                                </a> 
-                                <input type="hidden" name="bookId" value="${bookInfo.bookId}">
-                                <input type="hidden" name="rentBookId" value="${bookDetailsInfo.rentBookId}">
+                                </a> <input type="hidden" name="bookId" value="${bookInfo.bookId}"> <input type="hidden" name="rentBookId" value="${bookDetailsInfo.rentBookId}">
                             </form>
                             <ul>
                                 <li class="book_title">${bookInfo.title}</li>
                                 <li class="book_author">${bookInfo.author}(著)</li>
                                 <li class="book_publisher">出版社：${bookInfo.publisher}</li>
-                                <li class="book_publish_date">出版日：${bookInfo.publishDate}</li>                                
+                                <li class="book_publish_date">出版日：${bookInfo.publishDate}</li>
                             </ul>
                         </div>
                     </c:forEach>

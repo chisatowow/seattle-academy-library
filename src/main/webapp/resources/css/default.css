@@ -244,6 +244,11 @@ main {
     margin: 20px;
     /* min-height: 1024px; */
 }
+
+main .content_top {
+	display: flex;
+	justify-content: space-between;
+}
 /* コンテンツ本体 */
 main .content_body {
     display: flex;

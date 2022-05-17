@@ -39,16 +39,11 @@
                             <img class="book_noimg" src="resources/img/noImg.png">
                         </c:if> <c:if test="${bookDetailsInfo.thumbnailUrl != 'null'}">
                             <img class="book_noimg" src="${bookDetailsInfo.thumbnailUrl}">
-                        </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}"> <input type="hidden" name="rentBookId" value="${bookDetailsInfo.rentBookId}">
+                        </c:if> <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
                     </a>
                 </div>
-                <c:if test="${bookDetailsInfo.rentBookId == 0}">
-                    <p>貸し出し可</p>
-                </c:if>
-                <c:if test="${bookDetailsInfo.rentBookId != 0}">
-                    <p>貸し出し中</p>
-                </c:if>
-                <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}"> </a>
+                <p>${bookDetailsInfo.rentStatus}</p>
+                <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
             </div>
             <div class="rent_status">
                 <c:if test="${!empty rentedMessage}">
@@ -57,11 +52,7 @@
                 <c:if test="${!empty notRentMessage}">
                     <p class="error">${notRentMessage}</p>
                 </c:if>
-                <c:if test="${!empty rentedMessage}">
-                    <p class="error">${rentedMessage}</p>
-                </c:if>
             </div>
-        </div>
         <div class="content_right">
             <div>
                 <span>書籍名</span>

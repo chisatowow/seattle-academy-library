@@ -23,11 +23,13 @@ public class DetailsController {
 
     @Autowired
     private BooksService bookdService;
+    
 
     /**
      * 詳細画面に遷移する
      * @param locale
      * @param bookId
+     * @param rentBookId
      * @param model
      * @return
      */
@@ -38,7 +40,7 @@ public class DetailsController {
             Model model) {
         // デバッグ用ログ
         logger.info("Welcome detailsControler.java! The client locale is {}.", locale);
-
+        
         model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
 
         return "details";

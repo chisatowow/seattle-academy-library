@@ -44,7 +44,9 @@
                                     <c:if test="${bookInfo.thumbnail != 'null'}">
                                         <img class="book_noimg" src="${bookInfo.thumbnail}">
                                     </c:if>
-                                </a> <input type="hidden" name="bookId" value="${bookInfo.bookId}">
+                                </a> 
+                                <input type="hidden" name="bookId" value="${bookInfo.bookId}">
+                                <input type="hidden" name="rentBookId" value="${bookDetailsInfo.rentBookId}">
                             </form>
                             <ul>
                                 <li class="book_title">${bookInfo.title}</li>

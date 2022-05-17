@@ -30,6 +30,8 @@ public class BookDetailsInfo {
     
     private String isbn;
     
+    private String rentStatus;
+    
     public BookDetailsInfo() {
 
     }
@@ -44,7 +46,7 @@ public class BookDetailsInfo {
         this.thumbnailUrl = thumbnailUrl;
         this.thumbnailName = thumbnailName;
         this.bio = bio;
-        this.isbn = isbn;        
+        this.isbn = isbn;     
     }
 
 }

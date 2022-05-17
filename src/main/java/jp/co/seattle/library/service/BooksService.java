@@ -47,7 +47,10 @@ public class BooksService {
     public BookDetailsInfo getBookInfo(int bookId) {
 
         // JSPに渡すデータを設定する
-        String sql = "SELECT * FROM books where id ="
+        String sql = "SELECT *,"
+        		+ "CASE "
+        		+ "WHEN book_id ="+bookId+" THEN '貸出し中' else '貸出し可' END AS rent_status "
+        		+ "FROM books b left join rent r on b.id = r.book_id where id ="
                 + bookId;
 
         BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
@@ -74,7 +77,11 @@ public class BooksService {
         jdbcTemplate.update(sql);
         
     }
-    
+    /**
+     * 書籍IDに紐づく登録情報を取得する
+     * 
+     * @param bookId　書籍ID
+     */
     public void deleteBook(int bookId) {
     	
 		String sql = "DELETE FROM books WHERE id ='"+bookId+"'";
@@ -116,7 +123,5 @@ public class BooksService {
 
         jdbcTemplate.update(sql);
     }
-
-    
     
 }

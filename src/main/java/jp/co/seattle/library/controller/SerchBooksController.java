@@ -24,6 +24,14 @@ public class SerchBooksController {
     @Autowired
     private ThumbnailService thumbnailService;
 
+    /**
+     * 
+     * @param model モデル情報
+     * @param locale ロケール情報
+     * @param serchTitle 検索書籍タイトル
+     * @param radiobutton 検索フィルター選択
+     * @return 検索書籍一覧
+     */
     @RequestMapping(value = "/serchBook", method = RequestMethod.POST) //value＝actionで指定したパラメータ
     //RequestParamでname属性を取得
     public String login(Model model,
@@ -33,15 +41,21 @@ public class SerchBooksController {
     	// デバッグ用ログ
     	logger.info("Welcome SerchBooksController.java! The client locale is {}.", locale);
     	
-    	if(booksService.serchBookList(serchTitle).isEmpty() && booksService.serchMatchBookList(serchTitle).isEmpty()) {
-    		model.addAttribute("resultMessage","一致する書籍がありません。");
-    		return "home";
-    	}
-    	
+    	//部分一致=0、完全一致=1
     	if(radiobutton == 0) {
-    		model.addAttribute("bookList",booksService.serchBookList(serchTitle));    		
+    		if(booksService.serchBookList(serchTitle).isEmpty()) {
+    			model.addAttribute("resultMessage","一致する書籍がありません。");
+    			return "home";
+    		}else {
+    			model.addAttribute("bookList",booksService.serchBookList(serchTitle)); 
+    		}
     	}else {
-    		model.addAttribute("bookList",booksService.serchMatchBookList(serchTitle)); 
+    		if(booksService.serchMatchBookList(serchTitle).isEmpty()) {
+    			model.addAttribute("resultMessage","一致する書籍がありません。");
+    			return "home";
+    		}else {
+    			model.addAttribute("bookList",booksService.serchMatchBookList(serchTitle)); 
+    		}
     	}
     	
         return "home";

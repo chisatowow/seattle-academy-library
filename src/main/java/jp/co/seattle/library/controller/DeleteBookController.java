@@ -43,7 +43,7 @@ public class DeleteBookController {
 			Model model) {
 		logger.info("Welcome delete! The client locale is {}.", locale);
 
-		if(rentService.countValues(bookId) == 0) {
+		if(rentService.countDate(bookId) == 0) {
 			booksService.deleteBook(bookId);
 			model.addAttribute("bookList", booksService.getBookList());        
 		}else {

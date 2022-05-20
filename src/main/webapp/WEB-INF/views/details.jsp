@@ -44,14 +44,14 @@
                 </div>
                 <p>${bookDetailsInfo.rentStatus}</p>
                 <input type="hidden" name="bookId" value="${bookDetailsInfo.bookId}">
-            </div>
-            <div class="rent_status">
-                <c:if test="${!empty rentedMessage}">
-                    <p class="error">${rentedMessage}</p>
-                </c:if>
-                <c:if test="${!empty notRentMessage}">
-                    <p class="error">${notRentMessage}</p>
-                </c:if>
+                <div class="rent_status">
+                    <c:if test="${!empty rentedMessage}">
+                        <p class="error">${rentedMessage}</p>
+                    </c:if>
+                    <c:if test="${!empty notRentMessage}">
+                        <p class="error">${notRentMessage}</p>
+                    </c:if>
+                </div>
             </div>
         <div class="content_right">
             <div>

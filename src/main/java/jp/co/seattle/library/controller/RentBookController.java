@@ -48,9 +48,12 @@ public class RentBookController {
 		if(rentService.countValues(bookId) == 0) {
 			rentService.rentBook(bookId);
 		}else {
-			model.addAttribute("rentedMessage","貸出し済みです。");
+			if(rentService.countDate(bookId) == 0) {
+				rentService.againRentBook(bookId);
+			}else {
+				model.addAttribute("rentedMessage","貸出し済みです。");
+			}
 		}
-
 		model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
 		return "details";
 	}

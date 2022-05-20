@@ -27,8 +27,8 @@
     <main>
         <h1>Home</h1>
         <div class="content_top">
-            <div class"="content_addbutton">
-                <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括登録</a>
+            <div class="content_addbutton">
+                <a href="<%=request.getContextPath()%>/addBook" class="btn_add_book">書籍の追加</a> <a href="<%=request.getContextPath()%>/bulkRegist" class="btn_bulk_book">一括登録</a> <a href="<%=request.getContextPath()%>/rentHistory" class="btn_rent_history">貸出履歴一覧</a>
             </div>
             <form action="serchBook" method="post">
                 <input type="search" class="search1" value="${serchTitle}" name="serchTitle" />

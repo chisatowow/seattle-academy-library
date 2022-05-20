@@ -45,7 +45,8 @@ public class DeleteBookController {
 
 		if(rentService.countDate(bookId) == 0) {
 			booksService.deleteBook(bookId);
-			model.addAttribute("bookList", booksService.getBookList());        
+			booksService.deleteRentBook(bookId);
+			model.addAttribute("bookList", booksService.getBookList());
 		}else {
 			model.addAttribute("rentingMessage","貸出中のため削除できません。");
 			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));

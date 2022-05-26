@@ -272,6 +272,23 @@ ul {
   list-style: none;
 }
 
+.table {
+	width: 700px;
+	margin: auto;
+}
+
+.rentHis {
+	margin: 10px auto;
+}
+
+.th_color {
+	background-color: #7db4e6;
+}
+
+.tb_color {
+	color: #7db4e6;
+}
+
 h1 {
   padding: 0.4em 0.5em;
   color: #707070;

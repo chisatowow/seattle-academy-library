@@ -49,7 +49,7 @@ public class BooksService {
         // JSPに渡すデータを設定する
         String sql = "SELECT *,"
         		+ "CASE "
-        		+ "WHEN book_id ="+bookId+" THEN '貸出し中' else '貸出し可' END AS rent_status "
+        		+ "WHEN rent_date isNull THEN '貸出し可' else '貸出し中' END AS rent_status "
         		+ "FROM books b left join rent r on b.id = r.book_id where id ="
                 + bookId;
 
@@ -78,14 +78,22 @@ public class BooksService {
         
     }
     /**
-     * 書籍IDに紐づく登録情報を取得する
+     * 書籍IDに紐づく登録情報を削除する
      * 
      * @param bookId　書籍ID
      */
     public void deleteBook(int bookId) {
     	
 		String sql = "DELETE FROM books WHERE id ='"+bookId+"'";
+		
+		jdbcTemplate.update(sql);
     	
+    }
+    
+    public void deleteRentBook(int bookId) {
+    	
+    	String sql = "DELETE FROM rent WHERE book_id ='"+bookId+"'";
+		
 		jdbcTemplate.update(sql);
     	
     }

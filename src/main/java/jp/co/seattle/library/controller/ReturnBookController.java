@@ -43,7 +43,7 @@ public class ReturnBookController {
 			Model model) {
 		logger.info("Welcome detailsControler.java! The client locale is {}.", locale);
 		
-		if(rentService.countValues(bookId) > 0) {
+		if(rentService.countDate(bookId) > 0) {
 			rentService.returnBook(bookId);
 		}else {
 			model.addAttribute("notRentMessage","貸出しされていません。");

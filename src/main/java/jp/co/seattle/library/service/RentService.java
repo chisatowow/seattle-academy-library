@@ -40,7 +40,7 @@ public class RentService {
 	 */
 	
 	public void againRentBook(int bookId) {
-		String sql = "UPDATE rent SET (rent_date,return_date) = (now(),null) where book_id ="+bookId+"";
+		String sql = "UPDATE rent SET (rent_date,return_date) = (now(),null) where book_id ="+bookId;
 		
 		jdbcTemplate.update(sql);
 	}
@@ -51,7 +51,7 @@ public class RentService {
 	 * @return 書籍ID
 	 */
 	public int countValues(int bookId){
-		String sql = "SELECT COUNT(book_id) FROM rent WHERE book_id ="+bookId+"";
+		String sql = "SELECT COUNT(book_id) FROM rent WHERE book_id ="+bookId;
 		int countValues = jdbcTemplate.queryForObject(sql,int.class);
 		return countValues;
 	}
@@ -62,7 +62,7 @@ public class RentService {
 	 * @return 書籍ID
 	 */
 	public int countDate(int bookId) {
-		String sql = "SELECT COUNT(rent_date) FROM rent WHERE book_id="+bookId+"";
+		String sql = "SELECT COUNT(rent_date) FROM rent WHERE book_id="+bookId;
 		int countDate = jdbcTemplate.queryForObject(sql,int.class);
 		return countDate;
 	}
@@ -73,7 +73,7 @@ public class RentService {
 	 * @param bookId 書籍ID
 	 */
 	public void returnBook(int bookId) {
-		String sql = "UPDATE rent SET (rent_date,return_date) = (null,now()) WHERE book_id ="+bookId+"";
+		String sql = "UPDATE rent SET (rent_date,return_date) = (null,now()) WHERE book_id ="+bookId;
 		
 		jdbcTemplate.update(sql);
 	}
